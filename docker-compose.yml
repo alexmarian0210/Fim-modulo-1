@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres-loja
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Alex02102003.
+      POSTGRES_DB: loja
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    networks:
+      - loja-network
+
+# --- ESTA É A PARTE QUE FALTAVA ---
+volumes:
+  postgres_data:
+
+networks:
+  loja-network:
